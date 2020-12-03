@@ -1,5 +1,6 @@
 package xiaoxu.leetCode2;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,10 +21,18 @@ public class SpecialArray{
      * 解释：有 2 个元素（3 和 5）大于或等于 2
      */
     public int specialArray(int[] nums) {
-        if(nums == null || nums.length == 0){
-            return -1;
+        Arrays.sort(nums);
+        if(nums[0] >= nums.length){
+            return nums.length;
         }
-
+        int result = nums.length - 1, i = 1;
+        while(result > 0){
+            if(result <= nums[i] && result > nums[i - 1]){
+                return result;
+            }
+            result--;
+            i++;
+        }
         return -1;
     }
 }
