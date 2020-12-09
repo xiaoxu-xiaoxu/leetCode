@@ -1,12 +1,30 @@
 package xiaoxu.leetCode3;
 
-import java.util.List;
+import java.util.*;
 
 /**
  * @author xx
  * @create 2020/12/8 15:49
  */
 public class MinDifference{
+
+
+
+    public List<List<Integer>> min(int[] arr){
+        Arrays.sort(arr);
+        int minDec = arr[1] - arr[0], temp = 0;
+        for(int i = 1; i < arr.length - 1; i++){
+            temp = arr[i + 1] - arr[i];
+            minDec = Math.min(minDec, temp);
+        }
+        List<List<Integer>> list = new ArrayList<>();
+        for(int i = 0; i < arr.length - 1; i++){
+            if(arr[i + 1] - arr[i] == minDec){
+                list.add(Arrays.asList(arr[i], arr[i + 1]));
+            }
+        }
+        return list;
+    }
 
     /**
      * 给你个整数数组 arr，其中每个元素都 不相同。
@@ -17,7 +35,26 @@ public class MinDifference{
      * 输出：[[-14,-10],[19,23],[23,27]]
      */
     public List<List<Integer>> minimumAbsDifference(int[] arr){
-        return null;
+        Arrays.sort(arr);
+        int minDec = arr[1] - arr[0], temp = 0;
+        for(int i = 1; i < arr.length - 1; i++){
+            temp = arr[i + 1] - arr[i];
+            minDec = Math.min(minDec, temp);
+        }
+        Set<Integer> set = new HashSet<>();
+        List<List<Integer>> list = new ArrayList<>();
+        for(int a : arr){
+            set.add(a);
+        }
+        for(int a : arr){
+            if(set.contains(minDec + a)){
+                List<Integer> tempList = new ArrayList<>();
+                tempList.add(a);
+                tempList.add(a + minDec);
+                list.add(tempList);
+            }
+        }
+        return list;
     }
 
 }
