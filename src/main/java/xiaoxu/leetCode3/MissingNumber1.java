@@ -1,5 +1,6 @@
 package xiaoxu.leetCode3;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -8,6 +9,18 @@ import java.util.Set;
  * @create 2020/12/9 15:33
  */
 public class MissingNumber1{
+
+    public int missingNumber1(int[] nums){
+        if(nums == null || nums.length == 0){
+            return 0;
+        }
+        int nSum = 0,tSum = 0;
+        for(int i = 0; i < nums.length; i++){
+            tSum += i;
+            nSum += nums[i];
+        }
+        return tSum + nums.length - nSum;
+    }
 
     /**
      * 给定一个包含 [0, n] 中 n 个数的数组 nums ，找出 [0, n] 这个范围内没有出现在数组中的那个数。
