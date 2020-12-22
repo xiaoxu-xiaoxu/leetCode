@@ -3,6 +3,7 @@ package xiaoxu.leetCode3;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -15,6 +16,7 @@ public class AddToArray{
     public void test(){
         int[] arr = {1,2,0,0};
         List<Integer> integers = addToArrayForm(arr, 34);
+        System.out.println(integers);
     }
 
     /**
@@ -28,16 +30,52 @@ public class AddToArray{
      * 输出：[4,5,5]
      * 解释：274 + 181 = 455
      */
+    // [9,9,9,9,9,9,9,9,10,0]
     public List<Integer> addToArrayForm(int[] A, int K) {
-        StringBuilder builder = new StringBuilder();
-        for(int i : A){
-            builder.append(i);
+        String s = String.valueOf(K);
+        int[] a = new int[s.length()];
+        for(int i = 0; i < s.length(); i++){
+            a[i] = Integer.parseInt(s.substring(i, i + 1));
         }
-        String res = String.valueOf(Integer.parseInt(builder.toString()) + K);
-        List<Integer> result = new ArrayList<>();
-        for(int i = 0; i < res.length(); i++){
-            result.add(Integer.parseInt(res.substring(i, i + 1)));
+        int[] max,min;
+        max = a.length >= A.length ? a : A;
+        min = a.length >= A.length ? A : a;
+        List<Integer> res = new ArrayList<>(max.length + 1);
+
+        int index = max.length - 1, high = 0;
+        for(int i = min.length - 1; i >= 0; i--){
+            int temp = min[i] + max[index--] + high;
+            int ac = temp == 10 ? 0 : temp % 10;
+            res.add(ac);
+            if(temp / 10 == 0){
+                high = 0;
+                continue;
+            }
+            high = temp / 10;
         }
-        return result;
+        if(high == 1 && min.length == max.length){
+            res.add(high);
+            high = 0;
+        }
+        for(int i = max.length - min.length - 1; i >= 0; i--){
+            if(high != 0){
+                int c = max[i] + high;
+                int ac = c == 10 ? 0 : c % 10;
+                res.add(ac);
+                if(c / 10 == 0){
+                    high = 0;
+                    continue;
+                }
+                high = c / 10;
+            }else{
+                res.add(max[i]);
+            }
+        }
+        if(high == 1){
+            res.add(high);
+        }
+
+        Collections.reverse(res);
+        return res;
     }
 }
