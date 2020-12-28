@@ -1,5 +1,9 @@
 package xiaoxu.leetCode3;
 
+import org.junit.Test;
+
+import java.util.Arrays;
+
 /**
  * @author xx
  * @create 2020/12/24 15:21
@@ -21,6 +25,48 @@ public class NumberSmaller{
      * 解释：第一个查询 f("bbb") < f("aaaa")，第二个查询 f("aaa") 和 f("aaaa") 都 > f("cc")。
      */
     public int[] numSmallerByFrequency(String[] queries, String[] words) {
-        return null;
+        int[] qArr = new int[queries.length];
+        for(int i = 0; i < queries.length; i++){
+            qArr[i] = countSmall(queries[i]);
+        }
+        int[] wArr = new int[words.length];
+        for(int i = 0; i < words.length; i++){
+            wArr[i] = countSmall(words[i]);
+        }
+        int[] res = new int[queries.length];
+        for(int i = 0; i < queries.length; i++){
+            int count = 0;
+            for(int j = 0; j < words.length; j++){
+                if(qArr[i] < wArr[j]){
+                    count++;
+                }
+            }
+            res[i] = count;
+        }
+        return res;
+    }
+
+
+    public int countSmall(String str){
+        int count = 1;
+        char c = str.charAt(0);
+        for(int i = 1; i < str.length(); i++){
+            if(str.charAt(i) < c){
+                c = str.charAt(i);
+                count = 1;
+            }else if(c == str.charAt(i)){
+                count++;
+            }
+        }
+        return count;
+    }
+
+    @Test
+    public void test(){
+        int i = countSmall("aaab");
+        String[] q = {"bbb","cc"};
+        String[] w = {"a","aa","aaa","aaaa"};
+        System.out.println(Arrays.toString(numSmallerByFrequency(q, w)));
+        //System.out.println(i);
     }
 }
