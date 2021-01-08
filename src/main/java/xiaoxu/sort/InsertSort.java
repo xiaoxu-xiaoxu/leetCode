@@ -72,7 +72,7 @@ public class InsertSort{
                 int insertIndex = i;
                 while(insertIndex - gap >= 0 && insertVal < arr[insertIndex - gap]){
                     arr[insertIndex] = arr[insertIndex - gap];
-                    insertIndex-= gap;
+                    insertIndex -= gap;
                 }
                 arr[insertIndex] = insertVal;
             }
