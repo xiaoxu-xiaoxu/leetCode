@@ -12,7 +12,8 @@ public class MinStartValue{
     public void test(){
         int abs = Math.abs(-1);
         //System.out.println(abs);
-        int[] arr = {-3,-3,2};
+        int[] arr = {-3};
+        int[] arr1 = {-3,2,-3,4,2};
         System.out.println(minStartValue(arr));
     }
 
@@ -34,17 +35,13 @@ public class MinStartValue{
      * [-5,-2,4,4,-2]
      */
     public int minStartValue(int[] nums) {
-        int sum = 0, lIndex = 0, rIndex = nums.length - 1;
-        for(int i = nums.length - 1; i >= 0; i--){
-            if(nums[i] < 0){
-                rIndex = i;
-                break;
+        int result = 1, sum = 0;
+        for(int i = 0; i < nums.length; i++){
+            sum += nums[i];
+            if(sum + result < 1){
+                result = 1 + Math.abs(sum);
             }
         }
-        for(int i = 0; i <= rIndex; i++){
-            sum += nums[i];
-        }
-        int res = sum >= 0 ? 1 : 1 + Math.abs(sum);
-        return res;
+        return result;
     }
 }
