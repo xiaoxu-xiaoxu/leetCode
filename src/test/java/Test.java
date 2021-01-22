@@ -5,6 +5,13 @@
 public class Test{
 
     @org.junit.Test
+    public void test1(){
+        int i = 1;
+        ++i;
+        int b = 9;
+    }
+
+    @org.junit.Test
     public void test(){
         long l = System.currentTimeMillis();
         int a = 0;

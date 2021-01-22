@@ -41,12 +41,7 @@ public class MostArray{
             map.put(list, count);
         }
         ArrayList<Map.Entry<Integer, Integer>> list = new ArrayList<>(map.entrySet());
-        list.sort(new Comparator<Map.Entry<Integer, Integer>>(){
-            @Override
-            public int compare(Map.Entry<Integer, Integer> o1, Map.Entry<Integer, Integer> o2){
-                return o2.getValue() - o1.getValue();
-            }
-        });
+        list.sort((o1, o2) -> o2.getValue() - o1.getValue());
         if(list.get(0).getValue().equals(list.get(1).getValue()) || list.get(0).getValue() <= nums.length / 2){
             return -1;
         }
@@ -70,12 +65,7 @@ public class MostArray{
             return nums[0];
         }
         List<Map.Entry<Integer, Integer>> list = new ArrayList<>(map.entrySet());
-        list.sort(new Comparator<Map.Entry<Integer, Integer>>(){
-            @Override
-            public int compare(Map.Entry<Integer, Integer> o1, Map.Entry<Integer, Integer> o2){
-                return o2.getValue() - o1.getValue();
-            }
-        });
+        list.sort((o1, o2) -> o2.getValue() - o1.getValue());
         if(list.get(0).getValue().equals(list.get(1).getValue()) || list.get(0).getValue() <= nums.length / 2){
             return -1;
         }
