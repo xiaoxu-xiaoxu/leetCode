@@ -17,11 +17,16 @@ public class IsMonotonic{
      * 输出：true
      */
     public boolean isMonotonic(int[] A) {
-        int count = 0;
+        int flg = 0;
         for(int i = 0; i < A.length - 1; i++){
-
+            int compare = Integer.compare(A[i], A[i + 1]);
+            if(compare != 0){
+                if(compare != flg && flg != 0)
+                    return false;
+                flg = compare;
+            }
         }
-        return false;
+        return true;
     }
 
     public boolean isMonotonic1(int[] A) {
