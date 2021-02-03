@@ -39,4 +39,9 @@ public class SortArrayByParity{
         }
         return A;
     }
+
+    public int[] sortArray(int[] A){
+
+        return null;
+    }
 }

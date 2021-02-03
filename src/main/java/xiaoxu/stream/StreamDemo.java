@@ -26,6 +26,43 @@ public class StreamDemo{
     }
 
     @Test
+    public void test12(){
+        List<Integer> newList = new ArrayList<>();
+        newList = Stream.of(1,2,3,4)
+                .reduce(newList,
+                        (acc, item) -> {
+                            acc.add(item);
+                            System.out.println("item: " + item);
+                            System.out.println("acc+ : " + acc);
+                            System.out.println("BiFunction");
+                            return acc;
+                        }, (acc, item) -> null);
+        System.out.println();
+        System.out.println(newList);
+        //System.out.println("accResult_s: " + accResult_s);
+    }
+
+    @Test
+    public void test11(){
+        OptionalInt reduce = personList.stream()
+                .mapToInt(Person::getSalary)
+                .reduce(Integer::sum);
+        if(reduce.isPresent()){
+            int asInt = reduce.getAsInt();
+            System.out.println(asInt);
+        }
+    }
+
+
+    @Test
+    public void test10(){
+        List<Integer> numList = Arrays.asList(1,2,3,4,5);
+        int result = numList.stream().reduce(0, Integer::sum);
+        System.out.println(result);
+
+    }
+
+    @Test
     public void test9(){
         Map<Integer, Integer> map = new HashMap<>();
         Map<Integer, Integer> map1 = new TreeMap<>(((o1, o2) -> o2 - o1));
