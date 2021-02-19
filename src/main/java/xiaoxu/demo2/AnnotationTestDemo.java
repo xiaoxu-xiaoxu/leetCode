@@ -14,6 +14,11 @@ public class AnnotationTestDemo{
     public static void main(String[] args) throws Exception{
         Class<AnnotationTestDemo> clazz = AnnotationTestDemo.class;
         Method test = clazz.getDeclaredMethod("test");
+        Integer invoke = (Integer) test.invoke(clazz.newInstance());
+        System.out.println(invoke);
+    }
 
+    public int test(){
+        return 1;
     }
 }

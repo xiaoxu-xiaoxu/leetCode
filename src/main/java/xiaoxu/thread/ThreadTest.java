@@ -8,22 +8,16 @@ import org.junit.Test;
  */
 public class ThreadTest{
     public static void main(String[] args){
-        new Thread(){
-            @Override
-            public void run(){
-                for(int i = 11; i < 21; i++){
-                    System.out.println(i);
-                }
+        new Thread(() -> {
+            for(int i = 11; i < 21; i++){
+                System.out.println(i);
             }
-        }.start();
-        new Thread(){
-            @Override
-            public void run(){
-                for(int i = 0; i < 10; i++){
-                    System.out.println(i);
-                }
+        }).start();
+        new Thread(() -> {
+            for(int i = 0; i < 10; i++){
+                System.out.println(i);
             }
-        }.start();
+        }).start();
 
         System.out.println("xiaoxu");
         System.out.println("lijiang");
